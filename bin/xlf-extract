@@ -1,0 +1,41 @@
+#!/usr/bin/env node
+'use strict';
+
+const fs = require('fs');
+const xml = require('xml2js');
+const extract = require('../index');
+const formatYaml = require('../src/format-yaml');
+
+const args = (() => {
+    const argparse = require('argparse');
+    const parser = new argparse.ArgumentParser({
+        version: '0.1.0',
+        addHelp: true,
+        description: 'xlf-extract extracts source messages from XLIFF (.xlf) files'
+    });
+
+    parser.addArgument([ '-l', '--lang-file' ], {
+        help: 'destination file to populate with source messages (YAML)',
+        required: true
+    });
+
+    parser.addArgument([ '-m', '--messages-file' ], {
+        help: 'messages file to process',
+        required: true
+    });
+
+    return parser.parseArgs();
+})();
+
+const messageData = fs.readFileSync(args.messages_file);
+const parser = new xml.Parser();
+parser.parseString(messageData, (err, result) => {
+    if (err) {
+        throw new Error(`Unable to parse ${args.messages_file}`);
+    }
+
+    const units = extract(result);
+    const out = formatYaml(units);
+    fs.writeFileSync(args.lang_file, out);
+});
+

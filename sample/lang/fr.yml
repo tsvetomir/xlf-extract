@@ -1,0 +1,8 @@
+localized:
+  component:
+    # A goodbye message for the localized component
+    goodbye: Au Revoir!
+
+
+    # A hello world message for the localized component
+    hello: Bonjour!
