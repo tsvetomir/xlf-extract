@@ -1,7 +1,7 @@
 {
   "name": "xlf-extract",
   "version": "0.1.0",
-  "description": "Extract source messages from XLIFF (.XLF) files and stores them in YAML files for translation. See xlf-translate",
+  "description": "Extract source messages from XLIFF (.XLF) files and stores them in YAML files for translation",
   "main": "index.js",
   "scripts": {
     "lint": "eslint src/**/*.js bin/*",
