@@ -23,6 +23,12 @@ describe("extract", function() {
         expect(units[1].source).toBe('Good bye!');
     });
 
+    it("extracts target messages", function() {
+        units = extract(messages, true);
+        expect(units[0].source).toBe('Bonjour!');
+        expect(units[1].source).toBe('Au Revoir!');
+    });
+
     it("extracts only messages with ID in meaning", function() {
         expect(units.length).toBe(2);
     });

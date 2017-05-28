@@ -23,6 +23,12 @@ const args = (() => {
         required: true
     });
 
+    parser.addArgument([ '-t', '--use-target' ], {
+        help: 'extracts target (translated) instead of source messages',
+        defaultValue: false,
+        action: 'storeTrue'
+    });
+
     parser.addArgument([ '-e', '--encoding' ], {
         help: 'Specifies the XLIFF file encoding. Default is "utf-8".',
         defaultValue: 'utf-8'
@@ -33,7 +39,7 @@ const args = (() => {
 
 const messageData = fs.readFileSync(args.messages_file, { encoding: args.encoding });
 const messages = cheerio.load(messageData, { xmlMode: true, decodeEntities: false });
-const units = extract(messages);
+const units = extract(messages, args.use_target);
 const out = formatYaml(units);
 
 fs.writeFileSync(args.lang_file, out);
