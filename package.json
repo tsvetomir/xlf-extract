@@ -1,10 +1,11 @@
 {
   "name": "xlf-extract",
-  "version": "0.1.0",
+  "version": "0.0.0-semantically-released",
   "description": "Extract source messages from XLIFF (.XLF) files and stores them in YAML files for translation",
   "main": "index.js",
   "scripts": {
     "lint": "eslint src/**/*.js bin/*",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "test": "jasmine"
   },
   "bin": {
@@ -22,6 +23,7 @@
   "devDependencies": {
     "eslint": "^3.14.1",
     "jasmine": "2.5.3",
-    "js-yaml": "^3.8.1"
+    "js-yaml": "^3.8.1",
+    "semantic-release": "^6.3.6"
   }
 }
