@@ -43,4 +43,4 @@ const units = extract(messages, args.use_target);
 const out = formatYaml(units);
 
 fs.writeFileSync(args.lang_file, out);
-console.log('Done.');
+console.log(`Done. Extracted ${ units.length } messages.`);

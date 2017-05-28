@@ -4,6 +4,7 @@
  * Extracts translations from XLIFF files.
  *
  * @param doc object an XLIFF document parsed with cheerio
+ * @param useTarget boolean a flag indicating if the target field should be extracted instead of source
  * @return object a tree of keys and their source messages and descriptions
  */
 const extract = (doc, useTarget) => {
