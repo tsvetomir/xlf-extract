@@ -13,8 +13,7 @@
   "author": "Tsvetomir Tsonev",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "jsonpath": "^0.2.9",
-    "xml2js": "^0.4.17"
+    "cheerio": "^1.0.0-rc.1"
   },
   "repository": {
     "type": "git",

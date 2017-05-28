@@ -2,7 +2,7 @@
 'use strict';
 
 const fs = require('fs');
-const xml = require('xml2js');
+const cheerio = require('cheerio');
 const extract = require('../index');
 const formatYaml = require('../src/format-yaml');
 
@@ -28,14 +28,9 @@ const args = (() => {
 })();
 
 const messageData = fs.readFileSync(args.messages_file);
-const parser = new xml.Parser();
-parser.parseString(messageData, (err, result) => {
-    if (err) {
-        throw new Error(`Unable to parse ${args.messages_file}`);
-    }
+const messages = cheerio.load(messageData, { xmlMode: true, decodeEntities: false });
+const units = extract(messages);
+const out = formatYaml(units);
 
-    const units = extract(result);
-    const out = formatYaml(units);
-    fs.writeFileSync(args.lang_file, out);
-});
-
+fs.writeFileSync(args.lang_file, out);
+console.log('Done.');

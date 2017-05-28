@@ -1,32 +1,30 @@
 'use strict';
 
-const jp = require('jsonpath');
-
 /**
  * Extracts translations from XLIFF files.
  *
- * @param messages an XLIFF document parsed with xml2js
- * @return a tree of keys and their source messages and descriptions
+ * @param doc object an XLIFF document parsed with cheerio
+ * @return object a tree of keys and their source messages and descriptions
  */
-const extract = messages => {
-    const units = jp.query(messages, '$..["trans-unit"]')[0];
+const extract = doc => {
+    const units = doc('trans-unit').toArray();
+    const hasNotes = unit => doc(unit).find('note').length > 0;
+    const noteField = (unit, field) =>
+      doc(unit).find(`note[from=${ field }]`).text();
+    const description = unit => noteField(unit, 'description');
+    const meaning = unit => noteField(unit, 'meaning');
 
     return units
         .filter(hasNotes)
         .map(unit => ({
             description: description(unit),
             id: meaning(unit),
-            source: unit.source[0]
+            source: doc(unit).find('source').text()
         }))
         .filter(d => isKey(d.id));
 };
 
-const isKey = val => !!val.match(/^[a-zA-Z0-9.]*$/);
-const hasNotes = u => !!u.note;
-const noteField = (note, field) =>
-    note.find(note => note['$'].from === field)['_'];
-const meaning = unit => noteField(unit.note, 'meaning');
-const description = unit => noteField(unit.note, 'description');
+const isKey = val => !!val.match(/^[^.\s]*\.\S*$/);
 
 module.exports = extract;
 

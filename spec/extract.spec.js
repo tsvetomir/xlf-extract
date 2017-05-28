@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-const xml = require('xml2js');
+const cheerio = require('cheerio');
 const extract = require('../index');
 
 describe("extract", function() {
@@ -9,7 +9,12 @@ describe("extract", function() {
     let units;
 
     beforeEach(() => {
-        messages = require('./message-data');
+        const messageData = fs.readFileSync(
+          './sample/messages.xlf', { encoding: 'utf-8' });
+
+        messages = cheerio.load(
+          messageData, { xmlMode: true, decodeEntities: false });
+
         units = extract(messages);
     });
 

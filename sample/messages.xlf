@@ -20,6 +20,15 @@
         <note priority="1" from="description">A goodbye message for the localized component</note>
         <note priority="1" from="meaning">localized.component.goodbye</note>
       </trans-unit>
+      <trans-unit id="5d2bca2dfe723d964aec637df607198601d04306" datatype="html">
+          <source>Créé par <x id="INTERPOLATION"/> le <x id="INTERPOLATION_1"/></source>
+          <target/>
+          <context-group purpose="location">
+              <context context-type="sourcefile">E:/appli_client/src/app/travaux/Interventions/signalement/signalement.component.ts</context>
+              <context context-type="linenumber">45</context>
+          </context-group>
+          <note priority="1" from="description">Info création par qui / quand</note>
+      </trans-unit>
     </body>
   </file>
 </xliff>
