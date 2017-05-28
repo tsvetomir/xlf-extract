@@ -9,9 +9,13 @@ const formatYaml = require('../src/format-yaml');
 const args = (() => {
     const argparse = require('argparse');
     const parser = new argparse.ArgumentParser({
-        version: '0.1.0',
+        version: '0.2.0',
         addHelp: true,
-        description: 'xlf-extract extracts source messages from XLIFF (.xlf) files'
+        description: 'xlf-extract extracts messages from XLIFF (.xlf) files'
+    });
+
+    parser.addArgument('messages_file', {
+        help: 'XLIFF (.xlf) messages file to process'
     });
 
     parser.addArgument([ '-l', '--lang-file' ], {
@@ -19,15 +23,15 @@ const args = (() => {
         required: true
     });
 
-    parser.addArgument([ '-m', '--messages-file' ], {
-        help: 'messages file to process',
-        required: true
+    parser.addArgument([ '-e', '--encoding' ], {
+        help: 'Specifies the XLIFF file encoding. Default is "utf-8".',
+        defaultValue: 'utf-8'
     });
 
     return parser.parseArgs();
 })();
 
-const messageData = fs.readFileSync(args.messages_file);
+const messageData = fs.readFileSync(args.messages_file, { encoding: args.encoding });
 const messages = cheerio.load(messageData, { xmlMode: true, decodeEntities: false });
 const units = extract(messages);
 const out = formatYaml(units);

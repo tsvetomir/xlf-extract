@@ -21,7 +21,7 @@ See the [sample i18n Angular app](https://github.com/tsvetomir/angular-cli-i18n-
 
 ## Usage
 
-`xlf-extract --lang-file=lang/en.yml --messages-file=messages.xlf`
+`xlf-extract messages.xlf --lang-file=lang/en.yml`
 
 This will extract all source elements from the `messages.xlf` file into the language file.
 
