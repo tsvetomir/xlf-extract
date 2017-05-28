@@ -14,7 +14,7 @@ const extract = (doc, useTarget) => {
       doc(unit).find(`note[from=${ field }]`).text();
     const description = unit => noteField(unit, 'description');
     const meaning = unit => noteField(unit, 'meaning');
-    const sourceField = useTarget ? 'target' : 'source'
+    const sourceField = useTarget ? 'target' : 'source';
     const source = unit => doc(unit).find(sourceField).text();
 
     return units
