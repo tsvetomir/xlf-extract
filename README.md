@@ -25,6 +25,10 @@ See the [sample i18n Angular app](https://github.com/tsvetomir/angular-cli-i18n-
 
 This will extract all source elements from the `messages.xlf` file into the language file.
 
+Optionally, specify `--use-target` to extract the `target` (translated) messages:
+
+`xlf-extract --use-target messages.xlf --lang-file=lang/en.yml`
+
 ## Description
 
 Normally, you'd localize an attribute using the following syntax:
