@@ -20,14 +20,19 @@
         <note priority="1" from="description">A goodbye message for the localized component</note>
         <note priority="1" from="meaning">localized.component.goodbye</note>
       </trans-unit>
+      <trans-unit id="5a134dee893586d02bffc9611056b9cadf9abfad" datatype="html">
+          <source>{VAR_PLURAL, plural, =0 {just now} =1 {one minute ago} other {<x id="INTERPOLATION" equiv-text="{{minutes}}"/> minutes ago} }</source>
+          <target>{VAR_PLURAL, plural, =0 {à l'instant} =1 {il y a une minute} other {il y a <x id="INTERPOLATION" equiv-text="{{minutes}}"/> minutes} }</target>
+        <note priority="1" from="meaning">localized.component.interpolation</note>
+      </trans-unit>
       <trans-unit id="5d2bca2dfe723d964aec637df607198601d04306" datatype="html">
-          <source>Créé par <x id="INTERPOLATION"/> le <x id="INTERPOLATION_1"/></source>
-          <target/>
-          <context-group purpose="location">
-              <context context-type="sourcefile">E:/appli_client/src/app/travaux/Interventions/signalement/signalement.component.ts</context>
-              <context context-type="linenumber">45</context>
-          </context-group>
-          <note priority="1" from="description">Info création par qui / quand</note>
+        <source>Créé par <x id="INTERPOLATION"/> le <x id="INTERPOLATION_1"/></source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">E:/appli_client/src/app/travaux/Interventions/signalement/signalement.component.ts</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <note priority="1" from="description">Info création par qui / quand</note>
       </trans-unit>
     </body>
   </file>

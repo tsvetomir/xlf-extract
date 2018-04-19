@@ -15,7 +15,7 @@ const extract = (doc, useTarget) => {
     const description = unit => noteField(unit, 'description');
     const meaning = unit => noteField(unit, 'meaning');
     const sourceField = useTarget ? 'target' : 'source';
-    const source = unit => doc(unit).find(sourceField).text();
+    const source = unit => doc(unit).find(sourceField).html();
 
     return units
         .filter(hasNotes)

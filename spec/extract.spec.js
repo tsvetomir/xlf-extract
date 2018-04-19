@@ -30,12 +30,16 @@ describe("extract", function() {
     });
 
     it("extracts only messages with ID in meaning", function() {
-        expect(units.length).toBe(2);
+        expect(units.length).toBe(3);
     });
 
     it("extracts source description", function() {
         expect(units[0].description).toBe('A hello world message for the localized component');
         expect(units[1].description).toBe('A goodbye message for the localized component');
+    });
+
+    it("extracts interpolation expressions", function() {
+        expect(units[2].source).toBe('{VAR_PLURAL, plural, =0 {just now} =1 {one minute ago} other {<x id="INTERPOLATION" equiv-text="{{minutes}}"/> minutes ago} }');
     });
 });
 
